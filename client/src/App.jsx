@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LeafletMap from './components/LeafletMap';
+import SearchInput from './components/SearchInput';
 import 'leaflet/dist/leaflet.css';
 import './index.css';
 
@@ -48,8 +49,19 @@ function App() {
       <div className="content">
         <div className="sidebar">
           <div className="instructions">
-            <p>1. Click on the map to set <b>Origin</b>.</p>
-            <p>2. Click again to set <b>Destination</b>.</p>
+            <p>1. Search or click on map for <b>Origin</b>.</p>
+            <p>2. Search or click on map for <b>Destination</b>.</p>
+          </div>
+
+          <div className="search-section">
+            <SearchInput 
+              label="Origin" 
+              onSelect={(place) => setPositions(prev => ({ ...prev, start: { lat: place.lat, lng: place.lng } }))} 
+            />
+            <SearchInput 
+              label="Destination" 
+              onSelect={(place) => setPositions(prev => ({ ...prev, end: { lat: place.lat, lng: place.lng } }))} 
+            />
           </div>
           
           <button className="reset-btn" onClick={reset}>Reset Selection</button>
