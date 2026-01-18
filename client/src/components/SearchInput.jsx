@@ -12,7 +12,7 @@ const SearchInput = ({ label, onSelect }) => {
     const delayDebounceFn = setTimeout(async () => {
       if (query.length > 2) {
         try {
-          const response = await axios.get(`http://localhost:3000/api/route/search`, {
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/route/search`, {
             params: { q: query }
           });
           setSuggestions(response.data);

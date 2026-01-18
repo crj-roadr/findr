@@ -24,7 +24,7 @@ function App() {
       setError(null);
       const start = `${positions.start.lng},${positions.start.lat}`;
       const end = `${positions.end.lng},${positions.end.lat}`;
-      const response = await axios.get(`http://localhost:3000/api/route`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/route`, {
         params: { start, end }
       });
       setRouteData(response.data);
