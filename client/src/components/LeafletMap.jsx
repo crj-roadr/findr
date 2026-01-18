@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 
 // Fix for default marker icon in leaflet with webpack/vite
@@ -37,6 +37,24 @@ function LocationMarker({ positions, setPositions }) {
   );
 }
 
+const MapUpdater = ({ positions, routeData }) => {
+  const map = useMap();
+
+  React.useEffect(() => {
+    if (routeData && routeData.routes && routeData.routes[0].geometry) {
+       // Create bounds from route coordinates
+       const coordinates = routeData.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+       const bounds = L.latLngBounds(coordinates);
+       map.fitBounds(bounds, { padding: [50, 50] });
+    } else if (positions.start && positions.end) {
+      const bounds = L.latLngBounds([positions.start, positions.end]);
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [positions, routeData, map]);
+
+  return null;
+};
+
 const LeafletMap = ({ positions, setPositions, routeData }) => {
   const center = [51.505, -0.09]; // Default center (London)
 
@@ -47,6 +65,7 @@ const LeafletMap = ({ positions, setPositions, routeData }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       <LocationMarker positions={positions} setPositions={setPositions} />
+      <MapUpdater positions={positions} routeData={routeData} />
       {routeData && routeData.routes && routeData.routes[0].geometry && (
           <Polyline 
             positions={routeData.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]])} 
