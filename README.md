@@ -35,7 +35,7 @@ The project is divided into two main parts:
     npm install
     npm start
     ```
-    The server runs on port 3001.
+    The server runs on port 3000.
 
 3.  **Setup Client:**
     Open a new terminal window.
@@ -44,7 +44,7 @@ The project is divided into two main parts:
     npm install
     npm run dev
     ```
-    The client runs on port 5173 (typically).
+    The client runs on port 5173.
 
 ## Contributing
 

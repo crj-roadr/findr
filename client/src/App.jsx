@@ -22,7 +22,7 @@ function App() {
       setError(null);
       const start = `${positions.start.lng},${positions.start.lat}`;
       const end = `${positions.end.lng},${positions.end.lat}`;
-      const response = await axios.get(`http://localhost:5001/api/route`, {
+      const response = await axios.get(`http://localhost:3000/api/route`, {
         params: { start, end }
       });
       setRouteData(response.data);
