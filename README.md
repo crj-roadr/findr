@@ -13,7 +13,6 @@ The project is divided into two main parts:
 
 -   **Interactive Map**: Displays a map using Leaflet.
 -   **Route Calculation**: detailed routing (mocked/implemented backend logic).
--   **Vehicle Selection**: Choose between different vehicle types (Car, Truck, Scooter).
 
 ## Getting Started
 
