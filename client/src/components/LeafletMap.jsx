@@ -15,6 +15,15 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
+const orangeIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
 function LocationMarker({ positions, setPositions }) {
   useMapEvents({
     click(e) {
@@ -32,7 +41,7 @@ function LocationMarker({ positions, setPositions }) {
   return (
     <>
       {positions.start && <Marker position={positions.start}><Popup>Origin</Popup></Marker>}
-      {positions.end && <Marker position={positions.end}><Popup>Destination</Popup></Marker>}
+      {positions.end && <Marker position={positions.end} icon={orangeIcon}><Popup>Destination</Popup></Marker>}
     </>
   );
 }
