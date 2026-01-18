@@ -9,6 +9,7 @@ function App() {
   const [positions, setPositions] = useState({ start: null, end: null });
   const [routeData, setRouteData] = useState(null);
   const [error, setError] = useState(null);
+  const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     if (positions.start && positions.end) {
@@ -37,6 +38,7 @@ function App() {
     setPositions({ start: null, end: null });
     setRouteData(null);
     setError(null);
+    setResetKey(prev => prev + 1);
   };
 
   return (
@@ -55,12 +57,14 @@ function App() {
 
           <div className="search-section">
             <SearchInput 
+              key={`origin-${resetKey}`}
               label="Origin" 
-              onSelect={(place) => setPositions(prev => ({ ...prev, start: { lat: place.lat, lng: place.lng } }))} 
+              onSelect={(place) => setPositions(prev => ({ ...prev, start: place ? { lat: place.lat, lng: place.lng } : null }))} 
             />
             <SearchInput 
+              key={`dest-${resetKey}`}
               label="Destination" 
-              onSelect={(place) => setPositions(prev => ({ ...prev, end: { lat: place.lat, lng: place.lng } }))} 
+              onSelect={(place) => setPositions(prev => ({ ...prev, end: place ? { lat: place.lat, lng: place.lng } : null }))} 
             />
           </div>
           

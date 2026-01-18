@@ -53,17 +53,49 @@ const SearchInput = ({ label, onSelect }) => {
     });
   };
 
+  const handleClear = () => {
+    setQuery('');
+    setSuggestions([]);
+    setShowSuggestions(false);
+    onSelect(null);
+  };
+
   return (
     <div className="search-input-wrapper" ref={wrapperRef} style={{ marginBottom: '10px', position: 'relative' }}>
       <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}</label>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={`Search ${label}...`}
-        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-        onFocus={() => query.length > 2 && setShowSuggestions(true)}
-      />
+      <div style={{ position: 'relative' }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={`Search ${label}...`}
+          style={{ width: '100%', padding: '8px', paddingRight: '30px', boxSizing: 'border-box' }}
+          onFocus={() => query.length > 2 && setShowSuggestions(true)}
+        />
+        {query && (
+          <button
+            onClick={handleClear}
+            style={{
+              position: 'absolute',
+              right: '5px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'none',
+              border: 'none',
+              fontSize: '18px',
+              cursor: 'pointer',
+              color: '#999',
+              padding: '0 5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            aria-label="Clear search"
+          >
+            &times;
+          </button>
+        )}
+      </div>
       
       {showSuggestions && suggestions.length > 0 && (
         <ul className="suggestions-list" style={{
