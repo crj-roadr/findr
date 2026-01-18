@@ -1,6 +1,6 @@
 # Findr
 
-Findr is a route finding application that allows users to select a vehicle type and see a route on a map. It utilizes Leaflet for mapping.
+Findr is a route finding application that allows users see a route on a map and its details by clicking on the map or using the search inputs. It utilizes Leaflet for mapping and OSRM for routing.
 
 ## Structure
 
