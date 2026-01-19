@@ -14,6 +14,13 @@ The project is divided into two main parts:
 -   **Interactive Map**: Displays a map using Leaflet.
 -   **Route Calculation**: detailed routing (mocked/implemented backend logic).
 
+## Deployment
+
+Access the live application here:
+
+-   **Client**: [https://findrreactclient.vercel.app](https://findrreactclient.vercel.app)
+-   **Server**: [https://findrexpressserver.vercel.app](https://findrexpressserver.vercel.app)
+
 ## Getting Started
 
 ### Prerequisites
