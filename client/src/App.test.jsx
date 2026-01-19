@@ -6,6 +6,6 @@ test('renders App component', () => {
   render(<App />);
   // Check for something that likely exists or just that it renders without crashing
   // Vite template usually has "Vite + React" text
-  const linkElement = screen.getByText(/Vite \+ React/i);
+  const linkElement = screen.getByText(/Findr/i);
   expect(linkElement).toBeInTheDocument();
 });
